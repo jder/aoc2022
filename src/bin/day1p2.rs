@@ -9,7 +9,9 @@ fn main() {
         .lines()
         .map(|a| a.parse().unwrap_or_default())
         .coalesce(|a: u32, b| if b == 0 { Err((a, b)) } else { Ok(a + b) })
-        .max()
-        .unwrap();
+        .sorted()
+        .rev()
+        .take(3)
+        .sum::<u32>();
     println!("Max: {:?}", max);
 }
